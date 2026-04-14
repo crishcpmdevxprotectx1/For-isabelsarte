@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ceb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 I love you mama 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url('333836fe-4138-4ed1-8f1d-55f264be389b.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    /* ── LETTER CARD ── */
+    .letter {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 25px;
+      width: 90%;
+      max-width: 450px;
+      height: 80vh;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease;
+      display: none;
+      backdrop-filter: blur(2px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .letter::-webkit-scrollbar { width: 6px; }
+    .letter::-webkit-scrollbar-thumb {
+      background: linear-gradient(#ff99cc, #ff4d94);
+      border-radius: 10px;
+    }
+
+    /* ── TITLE ── */
+    h1 {
+      margin-bottom: 15px;
+      color: #fc43d890;
+      font-size: 32px;
+      font-family: 'Great Vibes', cursive;
+      font-weight: 600;
+      text-shadow: 0 0 15px #ff4d94, 0 0 30px #ff4d94;
+      animation: glow 3s ease-in-out infinite alternate;
+      letter-spacing: 1px;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px ; }
+      to   { text-shadow: 0 0 25px #ff4d94, 0 0 40px #ff4d94; }
+    }
+
+    /* ── PHOTO ── */
+    .image img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 5px rgba(255,153,204,0.3), 0 0 25px rgba(255,192,203,0.6);
+      animation: pulse 3s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.05); }
+    }
+
+    /* ── DECORATIVE DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,153,204,0.6), transparent);
+    }
+    .divider span {
+      font-size: 14px;
+      color: rgba(255,180,210,0.8);
+      letter-spacing: 4px;
+    }
+
+    /* ── TYPING TEXT ── */
+    .typing {
+      font-size: 16.5px;
+      line-height: 2;
+      color: #ffb3d4;
+      text-align: left;
+      white-space: pre-line;
+      font-family: 'Dancing Script', cursive;
+      padding: 0 4px;
+    }
+
+    /* First line (greeting) bold & bigger */
+    .typing .greeting {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ff80b3;
+      margin-bottom: 4px;
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 0 0 10px rgba(255,128,179,0.5);
+    }
+
+    .typing .word {
+      display: inline;
+      opacity: 0;
+      animation: fadeInWord 0.45s ease forwards;
+    }
+
+    @keyframes fadeInWord {
+      from { opacity: 0; transform: translateY(7px); filter: blur(5px); }
+      to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
+    }
+
+    /* ── CLOSING ── */
+    .love-you {
+      margin-top: 28px;
+      font-size: 30px;
+      font-family: 'Great Vibes', cursive;
+      background: linear-gradient(135deg, #ff80b3, #ffb347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 6px rgba(255,128,179,0.5));
+    }
+
+    @keyframes shimmer {
+      from { filter: drop-shadow(0 0 4px rgba(255,128,179,0.4)); }
+      to   { filter: drop-shadow(0 0 14px rgba(255,179,71,0.6)); }
+    }
+
+    .from {
+      font-size: 15px;
+      color: #e8c8d8;
+      margin-top: 8px;
+      font-family: 'Dancing Script', cursive;
+      text-align: right;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    /* ── INTRO / LOCKED ── */
+    .intro, .locked {
+      position: fixed;
+      inset: 0;
+      background: url(bgd.jpeg) no-repeat center center;
+      background-size: cover;
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 34px;
+      font-weight: bold;
+      z-index: 10;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      transition: opacity 0.5s ease;
+      text-shadow: 0 0 15px #ff99cc;
+    }
+
+    .intro span, .locked span {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #fbee63;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* ── REPLY BOX ── */
+    .reply-box {
+      margin-top: 30px;
+      text-align: center;
+      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 18px 14px;
+      border: 1px solid rgba(255,153,204,0.25);
+    }
+
+    .reply-box h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      color: #ff80b3;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px rgba(255,128,179,0.4);
+    }
+
+    .reply-box textarea {
+      width: 100%;
+      height: 100px;
+      border-radius: 15px;
+      border: 1.5px solid rgba(255,153,204,0.4);
+      background: rgba(255,255,255,0.93);
+      padding: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      resize: none;
+      outline: none;
+      color: #5a203a;
+      transition: border 0.2s;
+    }
+
+    .reply-box textarea:focus {
+      border-color: #ff80b3;
+    }
+
+    .reply-box textarea::placeholder {
+      color: #cc7799;
+      font-style: italic;
+    }
+
+    .reply-box button {
+      margin-top: 10px;
+      padding: 10px 28px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ff80b3, #ff4d94);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(255,77,148,0.45);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .reply-box button:hover {
+      transform: scale(1.06);
+      box-shadow: 0 7px 22px rgba(255,77,148,0.55);
+    }
+
+    #sendStatus {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ffcc99;
+      min-height: 18px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body onclick="openLetter()">
+
+  <div class="locked" id="locked">
+    ⏳ Not yet time 💌
+    <span>Come back on January 7, 7:57 PM 💖</span>
+  </div>
+
+  <div class="intro" id="intro" style="display:none;">
+    💌 Tap to Open 💌
+    <span>Touch anywhere to open my letter</span>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="sarte.mp4">
+  </audio>
+
+  <div class="letter" id="letter">
+    <h1>My Mama Isabel 💞</h1>
+
+    <div class="image">
+      <img src="1776009903929.jpg" alt="">
+    </div>
+
+    <div class="divider"><span>✦ ✦ ✦</span></div>
+
+    <p class="typing" id="typing"></p>
+
+    <!-- REPLY BOX -->
+    <div class="reply-box">
+      <h2>💌 Your message for me</h2>
+      <textarea id="replyMessage" placeholder="Isulat mo dito ang iyong sagot, Mama..."></textarea>
+      <button onclick="sendToTelegram()">Send 💖</button>
+      <p id="sendStatus"></p>
+    </div>
+
+    <p class="love-you">I Love You Forever 💗</p>
+    <p class="from">from — Aivan Sarte 💋</p>
+  </div>
+
+  <script>
+    const unlockDate = new Date("January 7, 2026 19:57:00").getTime();
+    const now = new Date().getTime();
+
+    if (now >= unlockDate) {
+      document.getElementById("locked").style.display = "none";
+      document.getElementById("intro").style.display = "flex";
+    } else {
+      document.getElementById("locked").style.display = "flex";
+    }
+
+    const lines = [
+      "Mahal kong Mama Isabel, 💖",
+      "Hindi madaling sabihin nang harapan ang lahat ng nararamdaman ko, kaya ngayon, sa simpleng sulat na ito, gusto kong ipahayag ang lahat ng pasasalamat na naipon ko sa puso ko para sa iyo.",
+      "Mama, salamat sa washing machine na binili mo para sa akin. Yun ay hindi lang isang bagay—yun ay pagmamahal mo na naka-anyo sa isang regalo. Sa bawat gamit ko niyon, naalala kita at nararamdaman ko ang iyong pagmamalasakit sa akin. 🫶",
+      "At yung birthday ko—hindi ko malilimutan kung paano mo inihanda lahat para sa akin. Sa gitna ng iyong mga responsibilidad, inuuna mo pa rin ako. Hindi ko kailanman mabibigyan ng halaga nang husto ang ganung klase ng pagmamahal.",
+      "Pinag-aral mo ako, Mama. Binigyan mo ako ng pagkakataon na magkaroon ng magandang bukas. Sa bawat buwan na ibinibigay mo para sa akin, nararamdaman ko ang iyong tiwala—at yun ang nagbibigay sa akin ng lakas at inspirasyon para magpatuloy at magsumikap.",
+      "Minsan nakakahiya na sabihin nang harapan, pero sana alam mo—lahat ng ginagawa mo para sa akin ay hindi ko basta-basta nakakalimutan. Naitatago ko sa puso ko ang bawat sakripisyo mo, bawat tulong mo, bawat ngiti mo na nagpapalakas sa akin.",
+      "Mahal na mahal kita, Mama Isabel. Ikaw ang aking lakas, aking inspirasyon, at aking pag-asa. Pangako ko—hindi ko pababayaan ang lahat ng iyong pinagsikapan para sa akin. Gagawin kong sulit ang bawat patak ng pawis mo. 🤍"
+    ];
+
+    function openLetter() {
+      if (new Date().getTime() < unlockDate) {
+        alert("⏳ Hindi pa time, Lablab! Wait till January 7, 7:57 PM 💖");
+        return;
+      }
+
+      document.getElementById("intro").style.opacity = "0";
+      setTimeout(() => document.getElementById("intro").style.display = "none", 500);
+
+      document.getElementById("bg-music").play().catch(() => {});
+
+      const letter = document.getElementById("letter");
+      letter.style.display = "block";
+      setTimeout(() => {
+        letter.style.opacity = "1";
+        letter.style.transform = "scale(1)";
+      }, 100);
+
+      setTimeout(typeWriter, 700);
+    }
+
+    function typeWriter() {
+      const container = document.getElementById("typing");
+      container.innerHTML = "";
+      let delay = 0;
+
+      lines.forEach((line, lineIndex) => {
+        // First line gets special greeting style
+        if (lineIndex === 0) {
+          const greetSpan = document.createElement("span");
+          greetSpan.className = "greeting word";
+          greetSpan.textContent = line;
+          greetSpan.style.animationDelay = delay + "ms";
+          container.appendChild(greetSpan);
+          delay += 400;
+          container.appendChild(document.createTextNode("\n"));
+          return;
+        }
+
+        // Other lines: word by word
+        const words = line.split(" ");
+        words.forEach((word, wi) => {
+          const span = document.createElement("span");
+          span.className = "word";
+          span.textContent = word + (wi < words.length - 1 ? " " : "");
+          span.style.animationDelay = delay + "ms";
+          container.appendChild(span);
+          delay += 110;
+        });
+
+        // Paragraph break after each line
+        if (lineIndex < lines.length - 1) {
+          container.appendChild(document.createTextNode("\n\n"));
+        }
+      });
+    }
+
+    // Telegram Bot
+    const BOT_TOKEN = "8649816920:AAG7Q6SS5JTv-vnXvrz92eXLDvM_5igL6pg";
+    const CHAT_ID = "8117301208";
+
+    function sendToTelegram() {
+      const msg = document.getElementById("replyMessage").value.trim();
+      const status = document.getElementById("sendStatus");
+
+      if (!msg) {
+        status.textContent = "Sulatan mo muna lab² 🥺";
+        return;
+      }
+
+      status.textContent = "Nagpapadala... 💌";
+
+      const text = `💌 Message ni Mama Isabel 💖\n\n"${msg}"`;
+
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          status.textContent = "✅ Na-send na! Salamat 💖";
+          document.getElementById("replyMessage").value = "";
+        } else {
+          status.textContent = "❌ Failed to send. Try ulit.";
+        }
+      })
+      .catch(() => { status.textContent = "⚠️ Walang koneksyon."; });
+    }
+  </script>
+</body>
+</html>
